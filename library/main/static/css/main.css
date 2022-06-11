@@ -1,5 +1,8 @@
 body{
-    background: black;
-    margin: 0;
+    background: sandybrown;
+    margin: auto;
     padding: 0;
+}
+li{
+    color: red;
 }

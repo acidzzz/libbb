@@ -13,3 +13,7 @@ class ImageBookForm(forms.ModelForm):
     class Meta:
         model = ImageBook
         fields = '__all__'
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField()
