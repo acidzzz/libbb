@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 {% load static %}
 <html lang="en">
 <head>
@@ -7,14 +7,20 @@
      <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
-<li><a href="{% url 'lib:page_index' %}">добавление книги</a></li>
-<li><a href="{% url 'lib:image_add' %}">добавление кратинки к книге</a></li>
-<li><a href="{% url 'lib:add_reader' %}">добавление пользователя</a></li>
-<li><a href="{% url 'lib:add_author' %}">добавление автора</a></li>
-<li><a href="">выдача книги</a></li>
-<li><a href="">прием книги</a></li>
-<li><a href="">список читателей</a></li>
-<li><a href="">поиск книги</a></li>
+<header id = "header">
+    <a href="https://mail.ru/"><img src="{% static 'images/background_main_page.jpg' %}" alt="" class = "header__logo"></a>
+    <block>Biblioteka</block>
+</header>
 
+<ul id="menu">
+    <li><a href="{% url 'lib:page_index' %}">добавление книги</a></li>
+    <li><a href="{% url 'lib:image_add' %}">добавление кратинки к книге</a></li>
+    <li><a href="{% url 'lib:add_reader' %}">добавление пользователя</a></li>
+    <li><a href="{% url 'lib:add_author' %}">добавление автора</a></li>
+    <li><a href="">выдача книги</a></li>
+    <li><a href="">прием книги</a></li>
+    <li><a href="">список читателей</a></li>
+    <li><a href="">поиск книги</a></li>
+</ul>
 </body>
 </html>

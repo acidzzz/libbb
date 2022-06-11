@@ -1,0 +1,11 @@
+{% extends 'main_page.html' %}
+{% block content %}
+
+<h1>Выдача книги пользователю:</h1>
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>OK</button>
+</form>
+{% endblock %}
+
