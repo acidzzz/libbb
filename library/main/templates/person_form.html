@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'main_page.html' %}
+{% block content %}
+
 <form action="" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="date" name="date_birthday" required id="id_date_birthday"><br>
     <button>ok</button>
 </form>
-</body>
-</html>
+{% endblock %}
+

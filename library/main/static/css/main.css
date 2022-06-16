@@ -1,6 +1,5 @@
 body{
-    background: url(../images/background_main_page.jpg);
-    background-size: 35%;
+    background: #f7d6a8;
     margin: 0;
     padding: 0;
 }
@@ -66,4 +65,12 @@ block{
     box-shadow: 4px 4px 7px #826370fc;
 }
 
-
+.box{
+    width: 350px;
+    height: 150px;
+    /*background-size: 35%;*/
+    margin: 0;
+    padding: 0;
+    background-color:#e8b795;
+    border: 1px solid #694a1f;
+}

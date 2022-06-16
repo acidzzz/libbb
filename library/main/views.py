@@ -82,3 +82,15 @@ def add_author(request):
                 'error':erorr,
             }
     return render(request, 'author_form.html', context)
+
+def lending_book(request):
+    return render(request, 'lending_book.html')
+
+def book_return(request):
+    return render(request, 'book_return.html')
+
+def user_list(request):
+    return render(request, 'user_list.html')
+
+def search(request):
+    return render(request, 'search.html')
