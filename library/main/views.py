@@ -1,10 +1,32 @@
 from django.shortcuts import render, redirect
-from django.template.defaulttags import url
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic.detail import DetailView
+
 from .forms import BookForm, ImageBookForm, PersonReaderForm, Author_form, BookFormGenre, BookFormAuthors
 
 from .models import Book, ImageBook, PersonReader
 
+from django.views.generic import ListView
+
+class BookListView(ListView):
+    model = Book
+    template_name = 'main_page.html'
+    paginate_by = 1
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Book.objects.get'
+        return context
+
+
+class GetDiscriptionBook(DetailView):
+    model = Book
+    template_name = 'book_detail.html'
+    context_object_name = 'book'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'ОписаниеКниги'
+        return context
 
 def page_index(request):
     form = BookForm()
@@ -64,24 +86,27 @@ def image_add(request):
             }
     return render(request, 'image_add.html', context)
 
-
+'''Не удалять и не коментить, сделал на ListView(эксперимент)'''
 def main_page(request):
     books = Book.objects.all()
     paginator = Paginator(books, 1)
     page_number = request.GET.get('page', 1)
+    title = 'Гавная страница'
     try:
         page_obj = paginator.get_page(page_number)
     except PageNotAnInteger:
         page_obj = paginator.get_page(1)
     except EmptyPage:
         page_obj = paginator.get_page(paginator.num_pages)
-    return render(request, 'main_page.html', {'page_obj':page_obj})
+    return render(request, 'main_page.html', {'page_obj':page_obj, 'title':title})
 
 
 def add_reader(request):
     form = PersonReaderForm()
+
     context = {
-        'form': form
+        'form': form,
+        'title': 'Добавление читателя',
     }
     if request.method == 'POST':
         form = PersonReaderForm(request.POST)
@@ -93,6 +118,7 @@ def add_reader(request):
             context = {
                 'form': form,
                 'error': erorr,
+                'title': 'Добавление читателя',
             }
     return render(request, 'person_form.html', context)
 
@@ -100,7 +126,8 @@ def add_reader(request):
 def add_author(request):
     form = Author_form()
     context = {
-        'form': form
+        'form': form,
+        'title': 'Добавление автора',
     }
     if request.method == 'POST':
         form = Author_form(request.POST, request.FILES)
@@ -112,6 +139,7 @@ def add_author(request):
             context = {
                 'form': form,
                 'error': erorr,
+                'title': 'Добавление автора',
             }
     return render(request, 'author_form.html', context)
 
@@ -119,6 +147,7 @@ def add_author(request):
 def readers_page(request):
     readers = PersonReader.objects.all()
     context = {
-        'readers':readers
+        'readers':readers,
+        'title': 'Читатели'
     }
     return render(request, 'reades_page.html', context)

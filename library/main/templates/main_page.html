@@ -4,9 +4,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Главная страница</title>
+{% block title_page %}
+    <title>{{ title }}</title>
+{% endblock title_page %}
+	{% block css_style_link %}
+	<link rel="stylesheet" href="{% static 'css/pagination.css' %}">
 	<link rel="stylesheet" href="{% static 'css/main.css' %}">
 	<link rel="stylesheet" href="{% static 'css/person.css' %}">
+	{% endblock css_style_link %}
 </head>
 <body>
 
@@ -37,8 +42,7 @@
 </ul>
 
 {% block content %}
-
-	<div>
+<div>
 	<table>
 		<tr>
 			<th>Название книги</th>
@@ -49,7 +53,7 @@
 		</tr>
 		{% for f in page_obj %}
 		<tr>
-			<td>{{ f.name_book_rus }}</td>
+			<td><a href=" {%  url 'lib:get_discription_book' f.pk %}">{{ f.name_book_rus }}</a></td>
 			<td>{% for g in f.genre_book.all %}
 			{{ g.name_genre }}
 			{% endfor %}</td>
@@ -64,12 +68,11 @@
 		{% endfor %}
 	</table>
 </div>
-{% endblock %}
+{% endblock content %}
 
-{% block x %}
+{% block pagina %}
 {% include 'pagination.html' %}
-
-{% endblock %}
+{% endblock pagina %}
 
 </body>
 </html>
