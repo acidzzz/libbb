@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+{% extends 'main_page.html' %}
+{% block title_page %}
+    <title>{{ title }}</title>
+{% endblock title_page %}
+{% block content %}
 <body>
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
@@ -12,3 +11,6 @@
 </form>
 </body>
 </html>
+{% endblock %}
+{% block pagina %}
+{% endblock pagina %}

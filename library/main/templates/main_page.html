@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 {% load static %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Привет</title>
-     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% block title_page %}
+    <title>{{ title }}</title>
+{% endblock title_page %}
+	{% block css_style_link %}
+	<link rel="stylesheet" href="{% static 'css/pagination.css' %}">
+	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" href="{% static 'css/person.css' %}">
+	{% endblock css_style_link %}
 </head>
 <body>
 
+<ul class=""></ul>
 <header id = "header">
 
     <a href="{% url 'lib:main_page' %}"><img src="{% static 'images/background_main_page.jpg' %}" alt="" class = "header__logo"></a>
@@ -32,23 +40,39 @@
 	</form>
 
 </ul>
+
 {% block content %}
-
-		{% for f in books %}
-
-			{{ f.name_book_rus }}
-			{% for g in f.genre_book.all %}
+<div>
+	<table>
+		<tr>
+			<th>Название книги</th>
+			<th>Название жанра</th>
+			<th>Цена за книгу</th>
+			<th>Количество</th>
+			<th>Обложка</th>
+		</tr>
+		{% for f in page_obj %}
+		<tr>
+			<td><a href=" {%  url 'lib:get_discription_book' f.pk %}">{{ f.name_book_rus }}</a></td>
+			<td>{% for g in f.genre_book.all %}
 			{{ g.name_genre }}
-			{% endfor %}
-			{{ f.count_book }}
-			{{ f.count_book }}
-			{% for i in f.imagebook_set.all %}
-				{% if i.photo_book.url %}
-				<img src="{{ i.photo_book.url }}"/>
-				{% endif %}
-			{% endfor %}
-		{% endfor %}
+			{% endfor %}</td>
+			<td>{{ f.price_book }}<span> руб</span></td>
+			<td>{{ f.count_book }}</td>
+			<td class="book">{% for i in f.imagebook_set.all %}
+			{% if i.photo_book.url %}
+			<a href="{{ i.photo_book.url }}"><img height="80" src="{{ i.photo_book.url }}" alt=""></a>
 
-{% endblock %}
+				{% endif %}
+			{% endfor %}</td></tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock content %}
+
+{% block pagina %}
+{% include 'pagination.html' %}
+{% endblock pagina %}
+
 </body>
 </html>
