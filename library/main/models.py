@@ -10,11 +10,12 @@ class Book(models.Model):
     count_book = models.IntegerField(verbose_name='Количество')
     all_author_book = models.ManyToManyField('Author', verbose_name='Все авторы книги')
     price_one_day_period = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Стоимость одного дня')
-    year_published = models.IntegerField(null=True, blank=True, validators=[MaxValueValidator(2100),
-                                                                            MinValueValidator(1200)],
+    year_published = models.IntegerField(null=True, blank=True, validators=[MaxValueValidator(3000),
+                                                                            MinValueValidator(0)],
                                          verbose_name='Год выпуска')
     date_register_book_in_database = models.DateField(auto_now_add=True, verbose_name='Дата регистрации книги')
     count_page_book = models.IntegerField(null=True, blank=True, verbose_name='Количество страниц')
+    book_read_person = models.ManyToManyField('PersonReader', related_name='book', verbose_name='Читатели', null=True, blank=True)
 
     def __str__(self):
         return self.name_book_rus
@@ -52,6 +53,8 @@ class PersonReader(models.Model):
     date_birthday = models.DateField(verbose_name='дата рождения')
     email = models.EmailField(verbose_name='Email')
     residential_address = models.CharField(max_length=100, verbose_name='Адрес проживания', null=True)
+    person_get_book = models.DateField( verbose_name='Дата выдачи', null=True)
+    # person_return_book = models.DateField(auto_now=True, verbose_name='Дата возврата')
 
     def __str__(self):
         return self.first_name
