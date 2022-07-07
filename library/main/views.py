@@ -153,15 +153,25 @@ def add_author(request):
 
 def readers_page(request):
     readers = PersonReader.objects.all()
+    paginator = Paginator(readers, 1)
+    page_number = request.GET.get('page', 1)
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.get_page(1)
+    except EmptyPage:
+        page_obj = paginator.get_page(paginator.num_pages)
     context = {
-        'readers': readers,
-        'title': 'Читатели'
+        'readers':readers,
+        'title': 'Читатели',
+        'page_obj': page_obj,
     }
     return render(request, 'reades_page.html', context)
 
 
 def search_result(request):
     if request.method == 'GET':
+
         search = request.GET['search'].casefold()
         result = Book.objects.get(name_book_rus=search)
         context = {
@@ -206,3 +216,4 @@ def give_book_to_person(request, pk):
                     'error': 'введите корректное число книг'
                 }
     return render(request, 'book_to_reader.html', context)
+

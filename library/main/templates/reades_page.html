@@ -14,13 +14,17 @@
 				<th>Дата рождения</th>
 				<th>Емейл</th>
 				<th>Адресс проживания</th>
+				<th>Книги</th>
 			</tr>
-			{% for f in readers %}
+			{% for f in page_obj %}
 			<td>{{ f.first_name }}</td>
 			<td>{{ f.last_name }}</td>
 			<td>{{ f.date_birthday }}</td>
 			<td>{{ f.email }}</td>
 			<td>{{ f.residential_address }}</td>
+				{% for i in f.book.all %}
+					<td>{{ i.name_book_rus.capitalize }}</td>
+				{% endfor %}
 			</tr>
 			{% endfor %}
 		</table>
@@ -30,15 +34,6 @@
 
 {% endblock %}
 
-
-<!--{% for f in readers %}-->
-<!--<div>-->
-<!--    {{ f.first_name }}-->
-<!--    {{ f.last_name }}-->
-<!--    {{ f.date_birthday }}-->
-<!--    {{ f.email }}-->
-<!--    {{ f.residential_address }}-->
-<!--</div>-->
-<!--{% endfor %}-->
 {% block pagina %}
+	{% include 'pagination.html' %}
 {% endblock pagina %}
