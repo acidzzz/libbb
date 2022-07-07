@@ -15,8 +15,7 @@ class Book(models.Model):
                                          verbose_name='Год выпуска')
     date_register_book_in_database = models.DateField(auto_now_add=True, verbose_name='Дата регистрации книги')
     count_page_book = models.IntegerField(null=True, blank=True, verbose_name='Количество страниц')
-    book_read_person = models.ManyToManyField('PersonReader', related_name='book', verbose_name='Читатели', null=True, blank=True)
-
+    book_read_person = models.ManyToManyField('PersonReader', verbose_name='Читатели')
     def __str__(self):
         return self.name_book_rus
 
@@ -53,8 +52,9 @@ class PersonReader(models.Model):
     date_birthday = models.DateField(verbose_name='дата рождения')
     email = models.EmailField(verbose_name='Email')
     residential_address = models.CharField(max_length=100, verbose_name='Адрес проживания', null=True)
-    person_get_book = models.DateField( verbose_name='Дата выдачи', null=True)
-    # person_return_book = models.DateField(auto_now=True, verbose_name='Дата возврата')
+
+    person_get_book = models.DateField(verbose_name='Дата выдачи', blank=True, null=True)
+
 
     def __str__(self):
         return self.first_name

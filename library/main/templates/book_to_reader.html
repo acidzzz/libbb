@@ -1,0 +1,14 @@
+{% extends 'main_page.html' %}
+
+{% block content %}
+<form action="" method="POST">
+    {%csrf_token%}
+    <select name="books" size="10" multiple>
+    {% for f in books %}
+    <option>{{ f.name_book_rus }}</option>
+    {% endfor %}
+    </select>
+    <button>ok</button>
+</form>
+{{error}}
+{% endblock %}
