@@ -1,0 +1,10 @@
+{% extends 'main_page.html' %}
+
+{% block content %}
+{{book.name_book_rus}}
+{% for i in book.genre_book.all %}
+{{i.name_genre}}
+{% endfor %}
+{{book.count_book}}
+{{book.price_one_day_period}}
+{% endblock %}

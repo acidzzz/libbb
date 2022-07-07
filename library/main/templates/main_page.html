@@ -20,7 +20,7 @@
 
     <a href="{% url 'lib:main_page' %}"><img src="{% static 'images/background_main_page.jpg' %}" alt="" class = "header__logo"></a>
 
-    <block>Biblioteka</block>
+    <block>Библиотека</block>
 </header>
 
 <ul id="menu">
@@ -28,13 +28,14 @@
     <li><a href="{% url 'lib:image_add' %}">добавление кратинки к книге</a></li>
     <li><a href="{% url 'lib:add_reader' %}">добавление пользователя</a></li>
     <li><a href="{% url 'lib:add_author' %}">добавление автора</a></li>
-    <li><a href="">выдача книги</a></li>
+    <li><a href="{% url 'lib:give_book' %}">выдача книги</a></li>
     <li><a href="">прием книги</a></li>
 
     <li><a href="{% url 'lib:readers_page'%}">список читателей</a></li>
 
 {#    <li><a href="">поиск книги</a></li>#}
-	<form action="" method="get">
+	<form action="{% url 'lib:search' %}" method="get">
+		{% csrf_token %}
 		<input size="4" type="search" name="search">
 		<button >искать</button>
 	</form>

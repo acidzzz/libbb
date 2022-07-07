@@ -17,8 +17,7 @@
       <scope value="GLOBAL" />
       <destination value="FILE" />
       <format value="EXCEL" />
-      <charset value="UTF-8" />
-      <charset value="UTF-8" />
+      <charset value="windows-1251" />
     </export-instructions>
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -28,23 +27,24 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="4886748c-af56-4966-acef-56c6194e2e74">
+    <connection id="fabf6499-18be-474a-8703-231f745ac579">
       <console name="Connection" type="STANDARD" schema="main" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="fabf6499-18be-474a-8703-231f745ac579" object-ref="schemas/main/tables/main_personreader" />
+      <object connection-id="fabf6499-18be-474a-8703-231f745ac579" object-ref="schemas/main/tables/main_book_book_read_person" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="4886748c-af56-4966-acef-56c6194e2e74" />
+    <connection id="fabf6499-18be-474a-8703-231f745ac579" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="4886748c-af56-4966-acef-56c6194e2e74" dataset="main.main_book_all_author_book" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="4886748c-af56-4966-acef-56c6194e2e74" dataset="main.main_book_genre_book" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="4886748c-af56-4966-acef-56c6194e2e74" dataset="main.main_book" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="4886748c-af56-4966-acef-56c6194e2e74" dataset="main.main_personreader" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="4886748c-af56-4966-acef-56c6194e2e74" dataset="main.main_imagebook" active-filter-id="EMPTY_FILTER" />
-    <filter-actions connection-id="4886748c-af56-4966-acef-56c6194e2e74" dataset="main.main_author" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="fabf6499-18be-474a-8703-231f745ac579" dataset="main.main_book_genre_book" active-filter-id="" />
+    <filter-actions connection-id="fabf6499-18be-474a-8703-231f745ac579" dataset="main.sqlite_sequence" active-filter-id="" />
+    <filter-actions connection-id="fabf6499-18be-474a-8703-231f745ac579" dataset="main.main_personreader" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="fabf6499-18be-474a-8703-231f745ac579" dataset="main.main_book_book_read_person" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -75,7 +75,7 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="4886748c-af56-4966-acef-56c6194e2e74" active="true" signed="true">
+      <connection id="fabf6499-18be-474a-8703-231f745ac579" active="true" signed="false">
         <database>
           <name value="Connection" />
           <description value="" />
@@ -90,7 +90,7 @@
           <port value="" />
           <database value="" />
           <files>
-            <file path="C:\Users\hanik\Desktop\lib\libbb\library\db.sqlite3" schema="main" />
+            <file path="D:\Новая папка (6)\libbb\library\db.sqlite3" schema="main" />
           </files>
           <type value="NONE" />
           <user value="" />
@@ -132,7 +132,7 @@
           <alternative-statement-delimiter value="" />
         </details>
         <object-filters hide-empty-schemas="false" hide-pseudo-columns="false">
-          <object-type-filter>
+          <object-type-filter use-master-settings="true">
             <object-type name="SCHEMA" enabled="true" />
             <object-type name="USER" enabled="true" />
             <object-type name="ROLE" enabled="true" />
@@ -249,11 +249,11 @@
         <nulls-first value="true" />
         <max-sorting-columns value="4" />
       </sorting>
-      <audit-columns>
-        <column-names value="" />
+      <tracking-columns>
+        <columnNames value="" />
         <visible value="true" />
         <editable value="false" />
-      </audit-columns>
+      </tracking-columns>
     </dataset-grid-settings>
     <dataset-editor-settings>
       <text-editor-popup>
@@ -287,10 +287,8 @@
           <content-type name="DTD" enabled="true" />
           <content-type name="HTML" enabled="true" />
           <content-type name="XHTML" enabled="true" />
-          <content-type name="CSS" enabled="true" />
           <content-type name="SQL" enabled="true" />
           <content-type name="PL/SQL" enabled="true" />
-          <content-type name="JavaScript" enabled="true" />
           <content-type name="JSON" enabled="true" />
           <content-type name="JSON5" enabled="true" />
           <content-type name="YAML" enabled="true" />
