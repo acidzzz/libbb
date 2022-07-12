@@ -6,7 +6,7 @@ class DateSelectorWidget(forms.MultiWidget):
     def __init__(self, attrs=None):
         days = [(day, day) for day in range(1, 32)]
         months = [(month, month) for month in range(1, 13)]
-        years = [(year, year) for year in range(1920, 2023)]
+        years = [(year, year) for year in range(1920, 2030)]
         widgets = [
             forms.Select(attrs=attrs, choices=days),
             forms.Select(attrs=attrs, choices=months),

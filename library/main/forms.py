@@ -38,6 +38,7 @@ class PersonReaderForm(forms.ModelForm):
 
         widgets = {
             'date_birthday': DateSelectorWidget,
+            'person_get_book': DateSelectorWidget,
         }
 
 

@@ -117,7 +117,6 @@ def add_reader(request):
     }
     if request.method == 'POST':
         form = PersonReaderForm(request.POST)
-        print(form.is_valid())
         if form.is_valid():
             form.save()
         else:
@@ -171,13 +170,14 @@ def readers_page(request):
 
 def search_result(request):
     if request.method == 'GET':
-
-        search = request.GET['search'].casefold()
-        result = Book.objects.get(name_book_rus=search)
-        context = {
-            'book': result
+        search= request.GET['search'].casefold()
+        result= Book.objects.filter(name_book_rus=search)
+        context={
+            'book':result,
+            'title':'поиск',
         }
-    return render(request, 'serach.html', context)
+
+        return render(request, 'search.html', context)
 
 
 def give_book(request):
@@ -194,7 +194,7 @@ def give_book_to_person(request, pk):
         'books': books
     }
     reader = PersonReader.objects.get(pk=pk)
-    print(datetime.datetime.date(datetime.datetime.now()))
+    # print(datetime.datetime.date(datetime.datetime.now()))
     if request.method == 'POST':
         if reader.book_set.all().exists():
             context = {
@@ -206,7 +206,6 @@ def give_book_to_person(request, pk):
             if len(book) < 5 and len(book) > 0:
 
                 for f in book:
-                    print(f)
                     reader.book_set.add(Book.objects.get(name_book_rus=f))
                 reader.person_get_book=datetime.datetime.date(datetime.datetime.now())
                 reader.save()
@@ -217,3 +216,25 @@ def give_book_to_person(request, pk):
                 }
     return render(request, 'book_to_reader.html', context)
 
+
+def return_book(request):
+    names = set(PersonReader.objects.filter(book__book_read_person__isnull=False))
+    context = {
+        'names': names,
+        'title':'Список читателей',
+    }
+    return render(request, 'return_book.html', context)
+
+
+def return_book_to_biblio(request, pk):
+    reader = PersonReader.objects.get(pk=pk)
+    books = reader.book_set.all()
+    context = {
+        'reader':reader,
+        'books':books,
+        'title':'СписокКниг',
+    }
+    # if request.method == 'POST':
+        # if len(request.POST) > 1:
+
+    return render(request, 'return_book_to_biblio.html', context)

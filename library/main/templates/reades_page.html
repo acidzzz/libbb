@@ -22,9 +22,12 @@
 			<td>{{ f.date_birthday }}</td>
 			<td>{{ f.email }}</td>
 			<td>{{ f.residential_address }}</td>
-				{% for i in f.book.all %}
-					<td>{{ i.name_book_rus.capitalize }}</td>
+
+			<td>
+				{% for i in f.book_set.all %}
+						{{ i.name_book_rus.capitalize }}
 				{% endfor %}
+			</td>
 			</tr>
 			{% endfor %}
 		</table>
