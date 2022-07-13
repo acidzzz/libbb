@@ -1,8 +1,8 @@
 from django.urls import path
 
 from .views import page_index, image_add, main_page, add_reader, add_author, book_genre_popup_add, \
-
-    book_author_popup_add, readers_page, BookListView, GetDiscriptionBook, search_result, give_book, give_book_to_person
+    book_author_popup_add, readers_page, BookListView, GetDiscriptionBook, \
+    search_result, give_book, give_book_to_person, return_book, return_book_to_biblio
 
 
 app_name = 'lib'
@@ -20,6 +20,8 @@ urlpatterns = [
     path('book/<int:pk>', GetDiscriptionBook.as_view(), name='get_discription_book'),
     path('search/', search_result, name='search'),
     path('give_book/', give_book, name='give_book'),
-    path('give_book/<int:pk>', give_book_to_person, name='give_book_to_person')
+    path('give_book/<int:pk>', give_book_to_person, name='give_book_to_person'),
+    path('return/', return_book, name='return_book'),
+    path('return/<int:pk>', return_book_to_biblio, name='return_book_to_biblio'),
 
 ]
