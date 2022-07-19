@@ -10,6 +10,8 @@ from .models import Book, ImageBook, PersonReader
 
 from django.views.generic import ListView
 
+from .utils import discont
+
 
 class BookListView(ListView):
     model = Book
@@ -185,6 +187,14 @@ def give_book(request):
     context = {
         'readers': readers
     }
+    if request.method == 'POST':
+        name=request.POST.get('search_reader')
+        try:
+            context = {
+                'readers': [PersonReader.objects.get(first_name=name)]
+            }
+        except PersonReader.DoesNotExist:
+            return redirect('lib:add_reader')
     return render(request, 'give_book.html', context)
 
 
@@ -206,9 +216,18 @@ def give_book_to_person(request, pk):
             if len(book) < 5 and len(book) > 0:
 
                 for f in book:
-                    reader.book_set.add(Book.objects.get(name_book_rus=f))
+                    one_book = Book.objects.get(name_book_rus=f)
+                    if one_book.count_book > len(one_book.book_read_person.all()):
+                        reader.book_set.add(one_book)
+                    else:
+                        book.remove(f)
                 reader.person_get_book=datetime.datetime.date(datetime.datetime.now())
                 reader.save()
+                price=discont(book)
+                context={
+                    'price':price
+                }
+                return render(request, 'book_to_reader.html', context)
             else:
                 context = {
                     'books': books,

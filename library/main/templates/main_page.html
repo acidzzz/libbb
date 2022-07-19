@@ -54,6 +54,7 @@
 			<th>Название жанра</th>
 			<th>Цена за книгу</th>
 			<th>Количество</th>
+			<th>Выдано</th>
 			<th>Обложка</th>
 		</tr>
 		{% for f in page_obj %}
@@ -64,6 +65,7 @@
 			{% endfor %}</td>
 			<td>{{ f.price_book }}<span> руб</span></td>
 			<td>{{ f.count_book }}</td>
+			<td>{{ f.book_read_person.all|length }}</td>
 			<td class="book">{% for i in f.imagebook_set.all %}
 			{% if i.photo_book.url %}
 			<a href="{{ i.photo_book.url }}"><img height="80" src="{{ i.photo_book.url }}" alt=""></a>
