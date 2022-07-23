@@ -253,7 +253,13 @@ def return_book_to_biblio(request, pk):
         'books':books,
         'title':'СписокКниг',
     }
-    # if request.method == 'POST':
-        # if len(request.POST) > 1:
-
+    if request.method == 'POST':
+        if len(request.POST) > 1:
+            book_list = list(map(str.lower, request.POST.getlist('return_book_to_biblio')))
+            # new_book_list = [x.lower() for x in request.POST.getlist('return_book_to_biblio')]
+            for i in book_list:
+                book = Book.objects.get(name_book_rus=i)
+                book.count_book += 1
+                reader.book_set.remove(book)
+                print(book)
     return render(request, 'return_book_to_biblio.html', context)
